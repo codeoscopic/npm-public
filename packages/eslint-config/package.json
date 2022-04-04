@@ -1,0 +1,32 @@
+{
+  "name": "@codeoscopic/eslint-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeoscopic/npm-public.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "publish": "npm publish"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^16.1.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-functional": "^4.2.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0"
+  },
+  "peerDependencies": {
+    "eslint": "^8.12.0"
+  }
+}

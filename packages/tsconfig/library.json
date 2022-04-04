@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "TypeScript Library",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "allowJs": true
+  }
+}

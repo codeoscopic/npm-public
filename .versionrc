@@ -1,0 +1,28 @@
+{
+  "bumpFiles": [
+    {
+      "filename": "package.json",
+      "type": "json"
+    },
+    {
+      "filename": "package-lock.json",
+      "type": "json"
+    },
+    {
+      "filename": "packages/eslint-config/package.json",
+      "type": "json"
+    },
+    {
+      "filename": "packages/tsconfig/package.json",
+      "type": "json"
+    },
+    {
+      "filename": "packages/tsup-config/package.json",
+      "type": "json"
+    },
+    {
+      "filename": "packages/vite-config/package.json",
+      "type": "json"
+    }
+  ]
+}

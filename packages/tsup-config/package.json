@@ -1,0 +1,27 @@
+{
+  "name": "@codeoscopic/tsup-config",
+  "version": "1.0.0",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeoscopic/npm-public.git"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "cp src/react-import.js dist",
+    "dev": "npm run build -- --watch --incremental",
+    "lint": "TIMING=1 eslint src --fix && tsc --noEmit",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "publish": "npm publish"
+  },
+  "devDependencies": {
+    "@codeoscopic/eslint-config": "*",
+    "@codeoscopic/tsconfig": "*"
+  },
+  "peerDependencies": {
+    "tsup": "^5.12.1"
+  }
+}
