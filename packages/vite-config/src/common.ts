@@ -1,5 +1,6 @@
 import path from "path";
-import type { ConfigEnv, UserConfig } from "vite";
+import fs from "fs";
+import { ConfigEnv, loadEnv, UserConfig } from "vite";
 import vitePluginHtmlEnv from "vite-plugin-html-env";
 import viteSentry, { ViteSentryPluginOptions } from "vite-plugin-sentry";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -13,39 +14,45 @@ export function createOptions({
   readonly sentryOptions?: Partial<ViteSentryPluginOptions>;
 } = {}) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  return (env: ConfigEnv): UserConfig => ({
-    plugins: [
-      // Setup sentry
-      ...(sentryOptions
-        ? [
-            viteSentry({
-              release: process.env.VITE_RELEASE,
-              configFile: path.resolve(process.cwd(), ".sentryclirc"),
-              setCommits: {
-                auto: true,
-                ...sentryOptions.setCommits,
-              },
-              sourceMaps: {
-                include: ["./dist/assets"],
-                ignore: ["node_modules"],
-                urlPrefix: "~/assets",
-                ...sentryOptions.sourceMaps,
-              },
-              ...(process.env.VITE_ENVIRONMENT && {
-                deploy: {
-                  env: process.env.VITE_ENVIRONMENT,
+  return (env: ConfigEnv): UserConfig => {
+    const { VITE_RELEASE, VITE_ENVIRONMENT } = loadEnv(env.mode, process.cwd());
+    const defaultConfigFile = path.resolve(process.cwd(), ".sentryclirc");
+    const enableSentry = fs.existsSync(defaultConfigFile) || !!sentryOptions;
+
+    return {
+      plugins: [
+        // Setup sentry
+        ...(enableSentry
+          ? [
+              viteSentry({
+                release: VITE_RELEASE,
+                configFile: defaultConfigFile,
+                setCommits: {
+                  auto: true,
+                  ...sentryOptions?.setCommits,
                 },
+                sourceMaps: {
+                  include: ["./dist/assets"],
+                  ignore: ["node_modules"],
+                  urlPrefix: "~/assets",
+                  ...sentryOptions?.sourceMaps,
+                },
+                ...(VITE_ENVIRONMENT && {
+                  deploy: {
+                    env: VITE_ENVIRONMENT,
+                  },
+                }),
+                ...sentryOptions,
               }),
-              ...sentryOptions,
-            }),
-          ]
-        : []),
-      // Enables HTML templating
-      vitePluginHtmlEnv(),
-      // Set path alias from tsconfig paths
-      tsconfigPaths(),
-    ],
-  });
+            ]
+          : []),
+        // Enables HTML templating
+        vitePluginHtmlEnv(),
+        // Set path alias from tsconfig paths
+        tsconfigPaths(),
+      ],
+    };
+  };
 }
 
 /**
