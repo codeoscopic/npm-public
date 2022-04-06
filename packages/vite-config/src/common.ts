@@ -51,6 +51,10 @@ export function createOptions({
         // Set path alias from tsconfig paths
         tsconfigPaths(),
       ],
+      build: {
+        // Generate sourcemap when building with sentry enabled by default
+        sourcemap: env.command === "build" && enableSentry,
+      },
     };
   };
 }
