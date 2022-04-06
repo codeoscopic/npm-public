@@ -1,7 +1,8 @@
-import type { Alias, ConfigEnv, UserConfig } from "vite";
+import type { ConfigEnv, UserConfig } from "vite";
 import vitePluginImp from "vite-plugin-imp";
 import { AntdResolver } from "vite-plugin-imp/dist/resolvers/antd";
 import { createOptions as createReactOptions } from "./react";
+import { compose } from "./utils";
 
 /**
  * Create custom options with default options.
@@ -20,24 +21,20 @@ export function createOptions({
    * Define the path to the variables file to override antd variables.
    */
   readonly variablesSrc?: string;
-} = {}) {
-  return (env: ConfigEnv): UserConfig => {
+} = {}): (env: ConfigEnv) => UserConfig {
+  return compose(
     // Get default react vite options
-    const options = createReactOptions(reactParams)(env);
-
-    return {
-      ...options,
+    createReactOptions(reactParams),
+    // Add react-antd options
+    {
       plugins: [
-        ...(options.plugins || []),
         vitePluginImp({
           // Adds antd imports
           libList: [AntdResolver],
         }),
       ],
       css: {
-        ...options.css,
         preprocessorOptions: {
-          ...options.css?.preprocessorOptions,
           less: {
             ...(variablesSrc && {
               modifyVars: {
@@ -50,15 +47,13 @@ export function createOptions({
         },
       },
       resolve: {
-        ...options.resolve,
         alias: [
-          ...((options.resolve?.alias as readonly Alias[]) || []),
           // Allow node_module imports using ~ used for antd
           { find: /^~/, replacement: "" },
         ],
       },
-    };
-  };
+    }
+  );
 }
 
 /**

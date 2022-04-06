@@ -2,6 +2,7 @@ import type { ConfigEnv, UserConfig } from "vite";
 import react, { Options as ReactOptions } from "@vitejs/plugin-react";
 import svgrPlugin from "vite-plugin-svgr";
 import { createOptions as createCommonOptions } from "./common";
+import { compose } from "./utils";
 
 /**
  * Create custom options with default options.
@@ -20,22 +21,20 @@ export function createOptions({
    * Options for react plugin.
    */
   readonly reactOptions?: ReactOptions;
-} = {}) {
-  return (env: ConfigEnv): UserConfig => {
+} = {}): (env: ConfigEnv) => UserConfig {
+  return compose(
     // Get default common vite options
-    const options = createCommonOptions(commonParams)(env);
-
-    return {
-      ...options,
+    createCommonOptions(commonParams),
+    // Add react options
+    {
       plugins: [
-        ...(options.plugins || []),
         // Include react plugin
         react(reactOptions),
         // Allow importing svg files
         svgrPlugin(),
       ],
-    };
-  };
+    }
+  );
 }
 
 /**
