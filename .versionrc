@@ -1,4 +1,7 @@
 {
+  "skip": {
+    "changelog": true
+  },
   "bumpFiles": [
     {
       "filename": "package.json",
