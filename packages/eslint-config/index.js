@@ -145,6 +145,14 @@ module.exports = {
           "error",
           { allowAsProps: true },
         ],
+
+        // Don't check void returns on promises that are handled by non-promises
+        "@typescript-eslint/no-misused-promises": [
+          "error",
+          {
+            checksVoidReturn: false,
+          },
+        ],
       },
     },
   ],
