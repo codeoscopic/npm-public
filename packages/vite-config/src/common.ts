@@ -13,7 +13,7 @@ export function createOptions({
   /**
    * Directory relative from `outDir` where the built js/css/image assets will
    * be placed.
-   * @default 'assets'
+   * @default 'static'
    */
   readonly assetsDir?: string;
   /**
