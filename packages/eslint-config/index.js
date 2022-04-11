@@ -71,6 +71,15 @@ module.exports = {
           },
         ],
 
+        // Disallow JSX props spreading on html
+        "react/jsx-props-no-spreading": [
+          "error",
+          {
+            html: "enforce",
+            custom: "ignore",
+          },
+        ],
+
         // Force to order imports
         "import/order": [
           "error",
