@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs";
-import { ConfigEnv, loadEnv, UserConfig } from "vite";
+import { ConfigEnv, loadEnv, UserConfig, splitVendorChunkPlugin } from "vite";
 import vitePluginHtmlEnv from "vite-plugin-html-env";
 import viteSentry, { ViteSentryPluginOptions } from "vite-plugin-sentry";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -55,6 +55,8 @@ export function createOptions({
         vitePluginHtmlEnv(),
         // Set path alias from tsconfig paths
         tsconfigPaths(),
+        // Split vendor modules into separate bundle
+        splitVendorChunkPlugin(),
       ],
       build: {
         // Change assets default folder to static and use assets for dynamic files.
