@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "ts-deepmerge": "^2.0.1",
-    "vite-plugin-html-env": "^1.1.1",
+    "vite-plugin-html-env": "^1.1.2",
     "vite-plugin-imp": "^2.1.8",
     "vite-plugin-sentry": "^1.0.14",
     "vite-plugin-svgr": "^1.1.0",
