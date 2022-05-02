@@ -26,7 +26,7 @@
   "dependencies": {
     "ts-deepmerge": "^2.0.1",
     "vite-plugin-html-env": "^1.1.1",
-    "vite-plugin-imp": "^2.1.7",
+    "vite-plugin-imp": "^2.1.8",
     "vite-plugin-sentry": "^1.0.14",
     "vite-plugin-svgr": "^1.1.0",
     "vite-tsconfig-paths": "^3.4.1"
