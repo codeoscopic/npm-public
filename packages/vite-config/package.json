@@ -28,7 +28,7 @@
     "vite-plugin-html-env": "^1.1.2",
     "vite-plugin-imp": "^2.1.8",
     "vite-plugin-sentry": "^1.0.14",
-    "vite-plugin-svgr": "^2.0.0",
+    "vite-plugin-svgr": "^2.1.0",
     "vite-tsconfig-paths": "^3.4.1"
   },
   "peerDependencies": {
