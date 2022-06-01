@@ -162,6 +162,9 @@ module.exports = {
             checksVoidReturn: false,
           },
         ],
+
+        // Allow single expressions in a fragment
+        "react/jsx-no-useless-fragment": ["warn", { allowExpressions: true }],
       },
     },
   ],
