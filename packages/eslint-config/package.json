@@ -28,5 +28,8 @@
   },
   "peerDependencies": {
     "eslint": "^8.13.0"
+  },
+  "optionalDependencies": {
+    "eslint": "^8.13.0"
   }
 }

@@ -23,5 +23,8 @@
   },
   "peerDependencies": {
     "tsup": "^6.2.1"
+  },
+  "optionalDependencies": {
+    "tsup": "^6.2.1"
   }
 }
