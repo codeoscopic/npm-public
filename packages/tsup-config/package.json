@@ -22,6 +22,6 @@
     "@codeoscopic/tsconfig": "*"
   },
   "peerDependencies": {
-    "tsup": "^5.12.1"
+    "tsup": "^6.2.1"
   }
 }

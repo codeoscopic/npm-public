@@ -1,6 +1,5 @@
 import type { ConfigEnv, UserConfig } from "vite";
 import vitePluginImp from "vite-plugin-imp";
-import { AntdResolver } from "vite-plugin-imp/dist/resolvers/antd";
 import { createOptions as createReactOptions } from "./react";
 import { compose } from "./utils";
 
@@ -30,7 +29,14 @@ export function createOptions({
       plugins: [
         vitePluginImp({
           // Adds antd imports
-          libList: [AntdResolver],
+          libList: [
+            {
+              libName: "antd",
+              style(name): string {
+                return `antd/es/${name}/style/css.js`;
+              },
+            },
+          ],
         }),
       ],
       css: {
