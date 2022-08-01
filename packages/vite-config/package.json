@@ -1,6 +1,6 @@
 {
   "name": "@codeoscopic/vite-config",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "sideEffects": false,
   "repository": {
     "type": "git",
