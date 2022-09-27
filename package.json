@@ -20,7 +20,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@types/node": "^18.6.3",
+    "@types/node": "^18.7.23",
     "eslint": "^8.21.0",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
