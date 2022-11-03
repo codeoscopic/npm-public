@@ -9,9 +9,10 @@
   "files": [
     "dist/**"
   ],
+  "typings": "./dist/client.d.ts",
   "scripts": {
     "build": "tsc",
-    "postbuild": "cp src/react-import.js dist",
+    "postbuild": "cp src/react-import.js dist && cp src/client.d.ts dist",
     "dev": "npm run build -- --watch --incremental",
     "lint": "TIMING=1 eslint src --fix && tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
@@ -26,5 +27,9 @@
   },
   "optionalDependencies": {
     "tsup": "^6.2.1"
+  },
+  "dependencies": {
+    "postcss": "^8.4.18",
+    "postcss-modules": "^4.3.0"
   }
 }
