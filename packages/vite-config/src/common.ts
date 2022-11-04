@@ -60,11 +60,19 @@ export function createOptions({
       ],
       build: {
         // Change assets default folder to static and use assets for dynamic files.
-        assetsDir: "static",
+        assetsDir,
         // Generate asset manifest
         manifest: "asset-manifest.json",
         // Generate sourcemap when building with sentry enabled by default
         sourcemap: env.command === "build" && enableSentry,
+        rollupOptions: {
+          output: {
+            // Change default assets to contain only hash
+            entryFileNames: `${assetsDir}/[hash].js`,
+            chunkFileNames: `${assetsDir}/[hash].js`,
+            assetFileNames: `${assetsDir}/[hash].[ext]`,
+          },
+        },
       },
     };
   };
