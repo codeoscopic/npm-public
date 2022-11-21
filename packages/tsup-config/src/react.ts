@@ -2,6 +2,7 @@ import path from "path";
 import fs, { promises as fsPromises } from "fs";
 import postcss from "postcss";
 import postcssModules from "postcss-modules";
+import postcssNested from "postcss-nested";
 import type { Options } from "tsup";
 
 // Import package.json from the app directory
@@ -63,6 +64,7 @@ export function defaultOptions(options: Options): Options {
 
               let cssModule = {};
               const result = await postcss([
+                postcssNested(),
                 postcssModules({
                   getJSON(_, json) {
                     cssModule = json;
