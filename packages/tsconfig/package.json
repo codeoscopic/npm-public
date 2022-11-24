@@ -1,6 +1,6 @@
 {
   "name": "@codeoscopic/tsconfig",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "sideEffects": false,
   "repository": {
     "type": "git",
