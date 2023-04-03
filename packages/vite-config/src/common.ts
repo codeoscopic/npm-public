@@ -49,7 +49,7 @@ export function createOptions({
                   env: VITE_ENVIRONMENT,
                 },
               }),
-            })
+            }) as ViteSentryPluginOptions
           ),
         // Enables HTML templating
         vitePluginHtmlEnv(),
