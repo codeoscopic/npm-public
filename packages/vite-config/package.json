@@ -21,7 +21,7 @@
   "devDependencies": {
     "@codeoscopic/eslint-config": "*",
     "@codeoscopic/tsconfig": "*",
-    "typescript": "^4.7.4"
+    "typescript": "^5.0.3"
   },
   "dependencies": {
     "ts-deepmerge": "^6.0.3",
