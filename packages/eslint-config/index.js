@@ -48,7 +48,7 @@ module.exports = {
         "@typescript-eslint/no-floating-promises": "off",
 
         // Prefer readonly types
-        "functional/no-method-signature": "error",
+        "functional/prefer-property-signatures": "error",
         "functional/prefer-readonly-type": [
           "error",
           {

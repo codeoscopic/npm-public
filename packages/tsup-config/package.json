@@ -23,14 +23,14 @@
     "@codeoscopic/tsconfig": "*"
   },
   "peerDependencies": {
-    "tsup": "^6.2.1"
+    "tsup": "^6.7.0"
   },
   "optionalDependencies": {
-    "tsup": "^6.2.1"
+    "tsup": "^6.7.0"
   },
   "dependencies": {
-    "postcss": "^8.4.18",
-    "postcss-modules": "^4.3.0",
-    "postcss-nested": "^6.0.0"
+    "postcss": "^8.4.21",
+    "postcss-modules": "^4.3.1",
+    "postcss-nested": "^6.0.1"
   }
 }
