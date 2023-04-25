@@ -1,8 +1,10 @@
 import path from "path";
 import fs from "fs";
-import { ConfigEnv, loadEnv, UserConfig, splitVendorChunkPlugin } from "vite";
+import type { ConfigEnv, UserConfig} from "vite";
+import { loadEnv, splitVendorChunkPlugin } from "vite";
 import vitePluginHtmlEnv from "vite-plugin-html-env";
-import viteSentry, { ViteSentryPluginOptions } from "vite-plugin-sentry";
+import type { ViteSentryPluginOptions } from "vite-plugin-sentry";
+import viteSentry from "vite-plugin-sentry";
 import tsconfigPaths from "vite-tsconfig-paths";
 import merge from "ts-deepmerge";
 

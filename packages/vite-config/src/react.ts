@@ -1,5 +1,6 @@
 import type { ConfigEnv, UserConfig } from "vite";
-import react, { Options as ReactOptions } from "@vitejs/plugin-react";
+import type { Options as ReactOptions } from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react";
 import svgrPlugin from "vite-plugin-svgr";
 import { createOptions as createCommonOptions } from "./common";
 import { compose } from "./utils";
