@@ -165,6 +165,9 @@ module.exports = {
 
         // Allow single expressions in a fragment
         "react/jsx-no-useless-fragment": ["warn", { allowExpressions: true }],
+
+        // Enforce consistent usage of type imports
+        "@typescript-eslint/consistent-type-imports": "error",
       },
     },
   ],
