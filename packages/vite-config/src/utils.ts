@@ -6,6 +6,6 @@ export const compose =
   (env: ConfigEnv): UserConfig =>
     merge(
       ...fnOrObjs.map((fnOrObj) =>
-        typeof fnOrObj === "function" ? fnOrObj(env) : fnOrObj
-      )
+        typeof fnOrObj === "function" ? fnOrObj(env) : fnOrObj,
+      ),
     );

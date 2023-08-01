@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs";
-import type { ConfigEnv, UserConfig} from "vite";
+import type { ConfigEnv, UserConfig } from "vite";
 import { loadEnv, splitVendorChunkPlugin } from "vite";
 import vitePluginHtmlEnv from "vite-plugin-html-env";
 import type { ViteSentryPluginOptions } from "vite-plugin-sentry";
@@ -51,7 +51,7 @@ export function createOptions({
                   env: VITE_ENVIRONMENT,
                 },
               }),
-            }) as ViteSentryPluginOptions
+            }) as ViteSentryPluginOptions,
           ),
         // Enables HTML templating
         vitePluginHtmlEnv(),

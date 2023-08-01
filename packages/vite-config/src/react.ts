@@ -34,7 +34,7 @@ export function createOptions({
         // Allow importing svg files
         svgrPlugin(),
       ],
-    }
+    },
   );
 }
 

@@ -7,7 +7,7 @@ import type { Options } from "tsup";
 
 // Import package.json from the app directory
 const packageJson = JSON.parse(
-  fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8")
+  fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8"),
 ) as Record<string, Record<string, string>>;
 
 const { dependencies = {}, peerDependencies = {} } = packageJson;
@@ -48,7 +48,7 @@ export function defaultOptions(options: Options): Options {
               pluginData: {
                 pathDir: path.join(args.resolveDir, args.path),
               },
-            })
+            }),
           );
           build.onLoad(
             { filter: /#css-module$/, namespace: "css-module" },
@@ -59,7 +59,7 @@ export function defaultOptions(options: Options): Options {
 
               const source = await fsPromises.readFile(
                 pluginData.pathDir,
-                "utf8"
+                "utf8",
               );
 
               let cssModule = {};
@@ -78,7 +78,7 @@ export function defaultOptions(options: Options): Options {
                   pluginData.pathDir
                 }"; export default ${JSON.stringify(cssModule)}`,
               };
-            }
+            },
           );
           build.onResolve(
             { filter: /\.module\.css$/, namespace: "css-module" },
@@ -86,14 +86,14 @@ export function defaultOptions(options: Options): Options {
               path: path.join(args.resolveDir, args.path, "#css-module-data"),
               namespace: "css-module",
               pluginData: args.pluginData as { css: string },
-            })
+            }),
           );
           build.onLoad(
             { filter: /#css-module-data$/, namespace: "css-module" },
             (args) => ({
               contents: (args.pluginData as { css: string }).css,
               loader: "css",
-            })
+            }),
           );
         },
       },

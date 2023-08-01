@@ -58,7 +58,7 @@ export function createOptions({
           { find: /^~/, replacement: "" },
         ],
       },
-    }
+    },
   );
 }
 
