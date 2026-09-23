@@ -30,7 +30,7 @@ export function createOptions({
     {
       plugins: [
         // Include react plugin
-        react(reactOptions),
+        react(reactOptions ?? {}),
         // Allow importing svg files
         svgrPlugin(),
       ],

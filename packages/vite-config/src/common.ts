@@ -1,11 +1,9 @@
 import path from "path";
 import fs from "fs";
 import type { ConfigEnv, UserConfig } from "vite";
-import { loadEnv, splitVendorChunkPlugin } from "vite";
-import vitePluginHtmlEnv from "vite-plugin-html-env";
-import type { ViteSentryPluginOptions } from "vite-plugin-sentry";
-import viteSentry from "vite-plugin-sentry";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { loadEnv } from "vite";
+import type { SentryVitePluginOptions } from "@sentry/vite-plugin";
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import merge from "ts-deepmerge";
 
 export function createOptions({
@@ -21,9 +19,8 @@ export function createOptions({
   /**
    * Sentry options
    */
-  readonly sentryOptions?: Partial<ViteSentryPluginOptions>;
+  readonly sentryOptions?: Partial<SentryVitePluginOptions>;
 } = {}) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return (env: ConfigEnv): UserConfig => {
     const { VITE_RELEASE, VITE_ENVIRONMENT } = loadEnv(env.mode, process.cwd());
     const defaultConfigFile = path.resolve(process.cwd(), ".sentryclirc");
@@ -32,34 +29,39 @@ export function createOptions({
 
     return {
       plugins: [
-        // Setup sentry
+        // Setup sentry.
+        //
+        // NOTE: credentials now come from SENTRY_AUTH_TOKEN / SENTRY_ORG /
+        // SENTRY_PROJECT (or from an explicit `sentryOptions`). `.sentryclirc`
+        // is still honoured as the *enable* signal for backwards
+        // compatibility, but the official plugin does not read credentials
+        // from it the way `vite-plugin-sentry` did.
         enableSentry &&
-          viteSentry(
+          sentryVitePlugin(
             merge.withOptions({ mergeArrays: false }, sentryOptions || {}, {
-              release: VITE_RELEASE,
-              configFile: defaultConfigFile,
-              setCommits: {
-                auto: true,
-              },
-              sourceMaps: {
-                include: [`./dist/${assetsDir}`],
-                ignore: ["node_modules"],
-                urlPrefix: `~/${assetsDir}`,
-              },
-              ...(VITE_ENVIRONMENT && {
-                deploy: {
-                  env: VITE_ENVIRONMENT,
+              release: {
+                name: VITE_RELEASE,
+                setCommits: {
+                  auto: true,
                 },
-              }),
-            }) as ViteSentryPluginOptions,
+                ...(VITE_ENVIRONMENT && {
+                  deploy: {
+                    env: VITE_ENVIRONMENT,
+                  },
+                }),
+              },
+              sourcemaps: {
+                assets: [`./dist/${assetsDir}/**`],
+                ignore: ["node_modules"],
+              },
+            }) as SentryVitePluginOptions,
           ),
-        // Enables HTML templating
-        vitePluginHtmlEnv(),
-        // Set path alias from tsconfig paths
-        tsconfigPaths(),
-        // Split vendor modules into separate bundle
-        splitVendorChunkPlugin(),
       ],
+      resolve: {
+        // Set path alias from tsconfig paths. Native since Vite 7, replaces
+        // the vite-tsconfig-paths plugin.
+        tsconfigPaths: true,
+      },
       build: {
         // Change assets default folder to static and use assets for dynamic files.
         assetsDir,
