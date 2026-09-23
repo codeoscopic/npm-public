@@ -2,8 +2,8 @@ import type { ConfigEnv, UserConfig } from "vite";
 import type { Options as ReactOptions } from "@vitejs/plugin-react";
 import react from "@vitejs/plugin-react";
 import svgrPlugin from "vite-plugin-svgr";
-import { createOptions as createCommonOptions } from "./common";
-import { compose } from "./utils";
+import { createOptions as createCommonOptions } from "./common.ts";
+import { compose } from "./utils.ts";
 
 /**
  * Create custom options with default options.
@@ -32,7 +32,13 @@ export function createOptions({
         // Include react plugin
         react(reactOptions ?? {}),
         // Allow importing svg files
-        svgrPlugin(),
+        svgrPlugin({
+          // Treat every .svg as a component, and keep the `ReactComponent`
+          // named export that vite-plugin-svgr v3 produced, so consumers do
+          // not have to rewrite their imports with `?react`.
+          include: "**/*.svg",
+          svgrOptions: { exportType: "named", namedExport: "ReactComponent" },
+        }),
       ],
     },
   );

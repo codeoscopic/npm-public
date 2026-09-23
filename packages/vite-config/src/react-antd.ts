@@ -1,7 +1,7 @@
 import type { ConfigEnv, UserConfig } from "vite";
 import vitePluginImp from "vite-plugin-imp";
-import { createOptions as createReactOptions } from "./react";
-import { compose } from "./utils";
+import { createOptions as createReactOptions } from "./react.ts";
+import { compose } from "./utils.ts";
 
 /**
  * Create custom options with default options.

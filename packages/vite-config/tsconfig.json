@@ -5,6 +5,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "rewriteRelativeImportExtensions": true
   }
 }
