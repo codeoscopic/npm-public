@@ -18,9 +18,9 @@
       "cache": false
     },
     "publish": {
+      "dependsOn": ["build"],
       "outputs": []
     }
   },
-  "baseBranch": "origin/main",
   "globalDependencies": [".env.*"]
 }
