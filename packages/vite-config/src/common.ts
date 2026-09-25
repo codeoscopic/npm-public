@@ -1,5 +1,3 @@
-import path from "path";
-import fs from "fs";
 import type { ConfigEnv, UserConfig } from "vite";
 import { loadEnv } from "vite";
 import type { SentryVitePluginOptions } from "@sentry/vite-plugin";
@@ -23,19 +21,18 @@ export function createOptions({
 } = {}) {
   return (env: ConfigEnv): UserConfig => {
     const { VITE_RELEASE, VITE_ENVIRONMENT } = loadEnv(env.mode, process.cwd());
-    const defaultConfigFile = path.resolve(process.cwd(), ".sentryclirc");
     const enableSentry =
-      !!VITE_RELEASE && (fs.existsSync(defaultConfigFile) || !!sentryOptions);
+      !!VITE_RELEASE && (!!process.env.SENTRY_AUTH_TOKEN || !!sentryOptions);
 
     return {
       plugins: [
         // Setup sentry.
         //
-        // NOTE: credentials now come from SENTRY_AUTH_TOKEN / SENTRY_ORG /
-        // SENTRY_PROJECT (or from an explicit `sentryOptions`). `.sentryclirc`
-        // is still honoured as the *enable* signal for backwards
-        // compatibility, but the official plugin does not read credentials
-        // from it the way `vite-plugin-sentry` did.
+        // Credentials come from SENTRY_AUTH_TOKEN / SENTRY_ORG /
+        // SENTRY_PROJECT, or from an explicit `sentryOptions`. The upload
+        // cannot work without a token, so that is what enables the plugin -
+        // `.sentryclirc` is not read at all by the official plugin and is no
+        // longer used as the signal.
         enableSentry &&
           sentryVitePlugin(
             merge.withOptions({ mergeArrays: false }, sentryOptions || {}, {
