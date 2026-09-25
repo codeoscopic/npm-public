@@ -1,11 +1,7 @@
-import path from "path";
-import fs from "fs";
 import type { ConfigEnv, UserConfig } from "vite";
-import { loadEnv, splitVendorChunkPlugin } from "vite";
-import vitePluginHtmlEnv from "vite-plugin-html-env";
-import type { ViteSentryPluginOptions } from "vite-plugin-sentry";
-import viteSentry from "vite-plugin-sentry";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { loadEnv } from "vite";
+import type { SentryVitePluginOptions } from "@sentry/vite-plugin";
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import merge from "ts-deepmerge";
 
 export function createOptions({
@@ -21,45 +17,54 @@ export function createOptions({
   /**
    * Sentry options
    */
-  readonly sentryOptions?: Partial<ViteSentryPluginOptions>;
+  readonly sentryOptions?: Partial<SentryVitePluginOptions>;
 } = {}) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return (env: ConfigEnv): UserConfig => {
     const { VITE_RELEASE, VITE_ENVIRONMENT } = loadEnv(env.mode, process.cwd());
-    const defaultConfigFile = path.resolve(process.cwd(), ".sentryclirc");
     const enableSentry =
-      !!VITE_RELEASE && (fs.existsSync(defaultConfigFile) || !!sentryOptions);
+      !!VITE_RELEASE && (!!process.env.SENTRY_AUTH_TOKEN || !!sentryOptions);
 
     return {
       plugins: [
-        // Setup sentry
+        // Setup sentry.
+        //
+        // Credentials come from SENTRY_AUTH_TOKEN / SENTRY_ORG /
+        // SENTRY_PROJECT, or from an explicit `sentryOptions`. The upload
+        // cannot work without a token, so that is what enables the plugin -
+        // `.sentryclirc` is not read at all by the official plugin and is no
+        // longer used as the signal.
         enableSentry &&
-          viteSentry(
+          sentryVitePlugin(
             merge.withOptions({ mergeArrays: false }, sentryOptions || {}, {
-              release: VITE_RELEASE,
-              configFile: defaultConfigFile,
-              setCommits: {
-                auto: true,
-              },
-              sourceMaps: {
-                include: [`./dist/${assetsDir}`],
-                ignore: ["node_modules"],
-                urlPrefix: `~/${assetsDir}`,
-              },
-              ...(VITE_ENVIRONMENT && {
-                deploy: {
-                  env: VITE_ENVIRONMENT,
+              release: {
+                name: VITE_RELEASE,
+                setCommits: {
+                  auto: true,
                 },
-              }),
-            }) as ViteSentryPluginOptions,
+                ...(VITE_ENVIRONMENT && {
+                  deploy: {
+                    env: VITE_ENVIRONMENT,
+                  },
+                }),
+              },
+              sourcemaps: {
+                assets: [`./dist/${assetsDir}/**`],
+                ignore: ["node_modules"],
+                // Sentry is the only consumer of these, and it has them by
+                // the time the build finishes. Leaving them in `dist` only
+                // bloats whatever ships it onwards - they were roughly two
+                // thirds of avant-front's build artifact - and risks them
+                // reaching somewhere public.
+                filesToDeleteAfterUpload: [`./dist/${assetsDir}/**/*.map`],
+              },
+            }) as SentryVitePluginOptions,
           ),
-        // Enables HTML templating
-        vitePluginHtmlEnv(),
-        // Set path alias from tsconfig paths
-        tsconfigPaths(),
-        // Split vendor modules into separate bundle
-        splitVendorChunkPlugin(),
       ],
+      resolve: {
+        // Set path alias from tsconfig paths. Native since Vite 7, replaces
+        // the vite-tsconfig-paths plugin.
+        tsconfigPaths: true,
+      },
       build: {
         // Change assets default folder to static and use assets for dynamic files.
         assetsDir,
