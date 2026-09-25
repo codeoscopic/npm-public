@@ -50,6 +50,12 @@ export function createOptions({
               sourcemaps: {
                 assets: [`./dist/${assetsDir}/**`],
                 ignore: ["node_modules"],
+                // Sentry is the only consumer of these, and it has them by
+                // the time the build finishes. Leaving them in `dist` only
+                // bloats whatever ships it onwards - they were roughly two
+                // thirds of avant-front's build artifact - and risks them
+                // reaching somewhere public.
+                filesToDeleteAfterUpload: [`./dist/${assetsDir}/**/*.map`],
               },
             }) as SentryVitePluginOptions,
           ),
