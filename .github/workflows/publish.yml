@@ -35,8 +35,8 @@ jobs:
         run: npm run build
 
       - name: Publish packages
+        # Skips packages whose version is already published, so re-running
+        # this job finishes a release that failed halfway.
         run: npm run publish
-        # Github publish packages event npm run publish fails 🤷‍♂️
-        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
