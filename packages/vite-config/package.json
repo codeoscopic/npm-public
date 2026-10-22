@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@sentry/vite-plugin": "^5.4.0",
-    "ts-deepmerge": "^6.2.0",
+    "ts-deepmerge": "^8.0.0",
     "vite-plugin-imp": "^2.4.0",
     "vite-plugin-svgr": "^5.2.0"
   },
