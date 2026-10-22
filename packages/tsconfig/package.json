@@ -8,12 +8,15 @@
   },
   "files": [
     "base.json",
-    "vite.json",
-    "tsup.json",
+    "library.json",
     "react-library.json",
-    "react-library-dom.json"
+    "tsup.json",
+    "vite.json"
   ],
   "scripts": {
     "link": "npm link"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.0"
   }
 }
