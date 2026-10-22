@@ -10,7 +10,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
-    "publish": "turbo run publish",
+    "publish": "node scripts/publish.mjs",
     "link": "turbo run link",
     "format": "prettier --write \"packages/**/*.{ts,tsx,md}\"",
     "prepare": "husky install",

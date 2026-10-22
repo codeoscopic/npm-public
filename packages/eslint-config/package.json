@@ -16,7 +16,6 @@
     "typescript6.js"
   ],
   "scripts": {
-    "publish": "npm publish",
     "link": "npm link"
   },
   "dependencies": {

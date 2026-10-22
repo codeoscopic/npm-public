@@ -17,11 +17,6 @@
     },
     "clean": {
       "cache": false
-    },
-    "publish": {
-      "dependsOn": ["build"],
-      "outputs": [],
-      "passThroughEnv": ["NODE_AUTH_TOKEN"]
     }
   },
   "globalDependencies": [".env.*"]
