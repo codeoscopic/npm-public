@@ -90,7 +90,7 @@ export function createOptions({
  *
  * @example
  * import { defineConfig } from "vite";
- * import defaultOptions from "@codeoscopic/vite-config/dist/common";
+ * import defaultOptions from "@codeoscopic/vite-config/dist/common.js";
  *
  * export default defineConfig(defaultOptions);
  */
