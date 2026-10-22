@@ -1,36 +1,40 @@
 {
   "name": "@codeoscopic/eslint-config",
   "version": "2.0.0",
+  "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
   "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/codeoscopic/npm-public.git"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "typescript6.js"
   ],
   "scripts": {
     "publish": "npm publish",
     "link": "npm link"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.2.0",
-    "@typescript-eslint/parser": "^6.2.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-config-prettier": "^8.9.0",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-functional": "^6.0.0",
-    "eslint-plugin-import": "^2.28.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.33.1",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "@eslint-react/eslint-plugin": "^5.27.2",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-functional": "^10.0.1",
+    "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "typescript": "npm:typescript@~6.0.3",
+    "typescript-eslint": "^8.71.2"
   },
   "peerDependencies": {
-    "eslint": "^8.37.0"
+    "eslint": "^10.0.0"
   },
-  "optionalDependencies": {
-    "eslint": "^8.46.0"
+  "engines": {
+    "node": "^22.15.0 || >=23.5.0"
   }
 }
