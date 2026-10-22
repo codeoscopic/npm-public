@@ -21,7 +21,8 @@ export default defineConfig(defaultOptions);
 
 ## Upgrading to 3.0.0
 
-Since 3.0.0 the package is published as ES modules. `tsup.config.ts` loads it the same way, whether your package is CommonJS or ES modules (tested with tsup 7.3 and 9.0 on Node.js 24). Import it with the `.js` extension, as above.
+- It requires tsup 9, which needs Node.js ^22.18.0, ^24.11.0 or >=26.
+- It's published as ES modules. `tsup.config.ts` loads it the same way, whether your package is CommonJS or ES modules. Import it with the `.js` extension, as above.
 
 ## TypeScript 7
 
@@ -35,6 +36,6 @@ tsup generates `.d.ts` files with the TypeScript compiler API, which TypeScript 
 }
 ```
 
-`tsc` then runs TypeScript 7, while tsup (and other tools that import `typescript`) get TypeScript 6. Use tsup 9: tsup 7's `.d.ts` build fails on TypeScript 6 because it sets the deprecated `baseUrl` option.
+`tsc` then runs TypeScript 7, while tsup (and other tools that import `typescript`) get TypeScript 6.
 
 Without the aliases, keep `typescript` on version 6 or older.
