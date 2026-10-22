@@ -1,6 +1,7 @@
 {
   "name": "@codeoscopic/vite-config",
   "version": "2.0.0",
+  "type": "module",
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
     "@codeoscopic/eslint-config": "*",
     "@codeoscopic/tsconfig": "*",
     "@vitejs/plugin-react": "^6.0.0",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "vite": "^8.0.0"
   },
   "dependencies": {
