@@ -9,7 +9,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/codeoscopic/npm-public.git"
+    "url": "git+https://github.com/codeoscopic/npm-public.git"
   },
   "files": [
     "index.js",
