@@ -10,6 +10,7 @@
     "base.json",
     "library.json",
     "react-library.json",
+    "tsdown.json",
     "tsup.json",
     "vite.json"
   ],
