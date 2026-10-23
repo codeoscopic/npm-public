@@ -1,10 +1,11 @@
 {
   "name": "@codeoscopic/tsup-config",
   "version": "2.0.0",
+  "type": "module",
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/codeoscopic/npm-public.git"
+    "url": "git+https://github.com/codeoscopic/npm-public.git"
   },
   "files": [
     "dist/**"
@@ -16,22 +17,19 @@
     "dev": "npm run build -- --watch --incremental",
     "lint": "TIMING=1 eslint src --fix && tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "publish": "npm publish",
     "link": "npm link"
   },
   "devDependencies": {
     "@codeoscopic/eslint-config": "*",
-    "@codeoscopic/tsconfig": "*"
+    "@codeoscopic/tsconfig": "*",
+    "tsup": "^9.0.0"
   },
   "peerDependencies": {
-    "tsup": "^6.7.0"
-  },
-  "optionalDependencies": {
-    "tsup": "^7.1.0"
+    "tsup": "^9.0.0"
   },
   "dependencies": {
-    "postcss": "^8.4.27",
-    "postcss-modules": "^4.3.1",
-    "postcss-nested": "^6.0.1"
+    "postcss": "^8.5.30",
+    "postcss-modules": "^9.0.1",
+    "postcss-nested": "^8.0.1"
   }
 }

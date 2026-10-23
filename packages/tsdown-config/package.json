@@ -1,0 +1,40 @@
+{
+  "name": "@codeoscopic/tsdown-config",
+  "version": "2.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeoscopic/npm-public.git"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "typings": "./dist/client.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "cp src/client.d.ts dist",
+    "dev": "npm run build -- --watch --incremental",
+    "lint": "TIMING=1 eslint src --fix && tsc --noEmit",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "link": "npm link"
+  },
+  "dependencies": {
+    "postcss": "^8.5.30",
+    "postcss-modules": "^9.0.1",
+    "postcss-nested": "^8.0.1"
+  },
+  "peerDependencies": {
+    "@tsdown/css": "^0.23.1",
+    "tsdown": "^0.23.1"
+  },
+  "devDependencies": {
+    "@codeoscopic/eslint-config": "*",
+    "@codeoscopic/tsconfig": "*",
+    "@tsdown/css": "^0.23.1",
+    "tsdown": "^0.23.1"
+  },
+  "engines": {
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  }
+}

@@ -1,14 +1,20 @@
 import type { ConfigEnv, UserConfig } from "vite";
-import vitePluginImp from "vite-plugin-imp";
+import vitePluginImpModule from "vite-plugin-imp";
 import { createOptions as createReactOptions } from "./react.ts";
 import { compose } from "./utils.ts";
+
+// vite-plugin-imp ships an ES module build but a single CommonJS-style .d.ts,
+// so TypeScript types this default import as the CommonJS module object.
+// At runtime it is the plugin function itself.
+const vitePluginImp =
+  vitePluginImpModule as unknown as typeof vitePluginImpModule.default;
 
 /**
  * Create custom options with default options.
  *
  * @example
  * import { defineConfig } from "vite";
- * import { createOptions } from "@codeoscopic/vite-config/dist/react-antd";
+ * import { createOptions } from "@codeoscopic/vite-config/dist/react-antd.js";
  *
  * export default defineConfig(createOptions({ ... }));
  */
@@ -67,7 +73,7 @@ export function createOptions({
  *
  * @example
  * import { defineConfig } from "vite";
- * import defaultOptions from "@codeoscopic/vite-config/dist/react-antd";
+ * import defaultOptions from "@codeoscopic/vite-config/dist/react-antd.js";
  *
  * export default defineConfig(defaultOptions);
  */

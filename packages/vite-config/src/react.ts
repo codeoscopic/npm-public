@@ -10,7 +10,7 @@ import { compose } from "./utils.ts";
  *
  * @example
  * import { defineConfig } from "vite";
- * import { createOptions } from "@codeoscopic/vite-config/dist/react";
+ * import { createOptions } from "@codeoscopic/vite-config/dist/react.js";
  *
  * export default defineConfig(createOptions({ ... }));
  */
@@ -49,7 +49,7 @@ export function createOptions({
  *
  * @example
  * import { defineConfig } from "vite";
- * import defaultOptions from "@codeoscopic/vite-config/dist/react";
+ * import defaultOptions from "@codeoscopic/vite-config/dist/react.js";
  *
  * export default defineConfig(defaultOptions);
  */
