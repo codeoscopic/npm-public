@@ -3,6 +3,7 @@
   "display": "Tsdown React Library",
   "extends": "./react-library.json",
   "compilerOptions": {
+    "declarationMap": false,
     "types": ["@codeoscopic/tsdown-config"]
   }
 }
