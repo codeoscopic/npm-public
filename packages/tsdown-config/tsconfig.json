@@ -1,0 +1,12 @@
+{
+  "extends": "@codeoscopic/tsconfig/base.json",
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "types": ["node"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext"
+  }
+}
