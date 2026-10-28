@@ -15,6 +15,7 @@
     "format": "prettier --write \"packages/**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
     "release": "npx standard-version --no-verify",
+    "release-next": "npm run release -- --prerelease next",
     "release-minor": "npm run release -- --release-as minor",
     "release-patch": "npm run release -- --release-as patch",
     "upgrade-libs": "ncu --deep -u -i --format group"
