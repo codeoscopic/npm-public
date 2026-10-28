@@ -30,6 +30,6 @@
   "dependencies": {
     "postcss": "^8.5.30",
     "postcss-modules": "^9.0.1",
-    "postcss-nested": "^8.0.1"
+    "postcss-nested": "^9.0.1"
   }
 }
