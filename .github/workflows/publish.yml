@@ -2,7 +2,7 @@ name: Publish package
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
@@ -34,9 +34,19 @@ jobs:
       - name: Build packages
         run: npm run build
 
-      - name: Publish packages
+      # scripts/publish.mjs skips versions that are already published, so
+      # re-running this job finishes a release that failed halfway.
+      - name: Publish packages (release)
         run: npm run publish
-        # Github publish packages event npm run publish fails 🤷‍♂️
-        continue-on-error: true
+        if: "!github.event.release.prerelease"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Pre-releases go to the `next` dist-tag, so `latest` stays on the last
+      # stable version (npm 10 would tag a pre-release `latest`, and npm 11 refuses
+      # to publish one without a tag).
+      - name: Publish packages (next)
+        run: npm run publish -- --tag=next
+        if: github.event.release.prerelease
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

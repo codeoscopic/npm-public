@@ -16,10 +16,6 @@
     },
     "clean": {
       "cache": false
-    },
-    "publish": {
-      "dependsOn": ["build"],
-      "outputs": []
     }
   },
   "globalDependencies": [".env.*"]
