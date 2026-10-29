@@ -6,3 +6,9 @@ updates:
       interval: "daily"
     labels:
       - "kind/chore"
+    groups:
+      # @tsdown/css peers on an exact tsdown version, so they must be bumped together.
+      tsdown:
+        patterns:
+          - "tsdown"
+          - "@tsdown/*"
