@@ -16,9 +16,6 @@
     },
     "clean": {
       "cache": false
-    },
-    "publish": {
-      "outputs": []
     }
   },
   "baseBranch": "origin/main",
