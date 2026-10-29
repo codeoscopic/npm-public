@@ -12,3 +12,7 @@ updates:
         patterns:
           - "tsdown"
           - "@tsdown/*"
+    # Matches developers' npm `min-release-age` (7 days), so `npm ci` can install
+    # the proposed versions locally.
+    cooldown:
+      default-days: 7
