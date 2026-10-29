@@ -2,7 +2,7 @@ import type { ConfigEnv, UserConfig } from "vite";
 import { loadEnv } from "vite";
 import type { SentryVitePluginOptions } from "@sentry/vite-plugin";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
-import merge from "ts-deepmerge";
+import { merge } from "ts-deepmerge";
 
 export function createOptions({
   sentryOptions,
@@ -90,7 +90,7 @@ export function createOptions({
  *
  * @example
  * import { defineConfig } from "vite";
- * import defaultOptions from "@codeoscopic/vite-config/dist/common";
+ * import defaultOptions from "@codeoscopic/vite-config/dist/common.js";
  *
  * export default defineConfig(defaultOptions);
  */

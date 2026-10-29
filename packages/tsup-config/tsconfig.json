@@ -3,6 +3,10 @@
   "include": ["src"],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    "outDir": "dist"
+    "rootDir": "src",
+    "outDir": "dist",
+    "types": ["node"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext"
   }
 }

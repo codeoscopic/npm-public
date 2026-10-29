@@ -7,33 +7,39 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo run dev",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
     "publish": "node scripts/publish.mjs",
     "link": "turbo run link",
     "format": "prettier --write \"packages/**/*.{ts,tsx,md}\"",
-    "prepare": "husky install",
-    "release": "npx standard-version --no-verify",
+    "prepare": "husky",
+    "release": "commit-and-tag-version --no-verify",
     "release-next": "npm run release -- --prerelease next",
     "release-minor": "npm run release -- --release-as minor",
     "release-patch": "npm run release -- --release-as patch",
     "upgrade-libs": "ncu --deep -u -i --format group"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.7",
-    "@commitlint/config-conventional": "^17.6.7",
-    "@types/node": "^20.4.5",
-    "eslint": "^8.46.0",
-    "husky": "^8.0.3",
-    "npm-check-updates": "^16.10.17",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@types/node": "^24.19.2",
+    "commit-and-tag-version": "^13.3.0",
+    "eslint": "^10.0.0",
+    "husky": "^9.1.7",
+    "npm-check-updates": "^23.1.1",
     "prettier": "^3.0.0",
-    "standard-version": "^9.5.0",
-    "turbo": "^1.10.12"
+    "turbo": "^2.11.8",
+    "typescript": "^7.0.2"
   },
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
-  "packageManager": "npm@8.5.4"
+  "packageManager": "npm@11.19.0",
+  "overrides": {
+    "eslint-plugin-jsx-a11y": {
+      "eslint": "$eslint"
+    }
+  }
 }

@@ -14,7 +14,7 @@ jobs:
       - name: Setup node 20
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           registry-url: https://npm.pkg.github.com
           scope: "@codeoscopic"
@@ -23,7 +23,7 @@ jobs:
         id: turbo-cache
         uses: actions/cache@v4
         with:
-          path: node_modules/.cache/turbo
+          path: .turbo/cache
           key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
           restore-keys: |
             turbo-${{ github.job }}-${{ github.ref_name }}-

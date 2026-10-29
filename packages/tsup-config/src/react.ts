@@ -34,7 +34,7 @@ export function defaultOptions(options: Options): Options {
     // Don't minify if in watch mode (possible dev build)
     minify: !options.watch,
     // Inject React imports into the bundle to avoid importing it in each file
-    inject: [path.resolve(__dirname, "react-import.js")],
+    inject: [path.resolve(import.meta.dirname, "react-import.js")],
     // Allow PostCSS modules
     esbuildPlugins: [
       {

@@ -14,6 +14,7 @@ npm install -D @codeoscopic/tsconfig
 
 - @codeoscopic/tsconfig/library.json _(For building TS libraries)_
 - @codeoscopic/tsconfig/react-library.json _(For building React libraries)_
+- @codeoscopic/tsconfig/tsdown.json _(For React libraries built with @codeoscopic/tsdown-config; adds the `*.module.css` types)_
 - @codeoscopic/tsconfig/vite.json _(For Vite React libraries)_
 
 Example using vite configuration:
