@@ -26,13 +26,13 @@
   },
   "peerDependencies": {
     "@tsdown/css": "^0.23.1",
-    "tsdown": "^0.23.1"
+    "tsdown": "^0.23.2"
   },
   "devDependencies": {
     "@codeoscopic/eslint-config": "*",
     "@codeoscopic/tsconfig": "*",
     "@tsdown/css": "^0.23.1",
-    "tsdown": "^0.23.1"
+    "tsdown": "^0.23.2"
   },
   "engines": {
     "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
