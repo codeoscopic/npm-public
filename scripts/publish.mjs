@@ -24,20 +24,29 @@ const hasTag = publishArgs.some(
 const npm = (args, options = {}) =>
   spawnSync("npm", args, { cwd: root, encoding: "utf8", ...options });
 
-const getPublishedVersions = (name) => {
-  const result = npm(["view", name, "versions", "--json"]);
+// `npm view <spec> <field>` as JSON, or null when the package or version
+// doesn't exist.
+const view = (spec, field) => {
+  const result = npm(["view", spec, field, "--json"]);
   if (result.status === 0) {
-    // A single version comes back as a string
-    return [JSON.parse(result.stdout || "[]")].flat();
+    return result.stdout.trim() ? JSON.parse(result.stdout) : null;
   }
   const { error } = JSON.parse(result.stdout || "{}");
   if (error?.code === "E404") {
-    return [];
+    return null;
   }
   throw new Error(
-    `Couldn't read the versions of ${name} from the registry:\n${result.stdout}${result.stderr}`,
+    `Couldn't read ${field} of ${spec} from the registry:\n${result.stdout}${result.stderr}`,
   );
 };
+
+const isPublished = (name, version) =>
+  view(`${name}@${version}`, "version") !== null;
+
+// Without a `latest` dist-tag (only pre-releases published yet), npm prints
+// nothing here, which is fine: there are no stable versions to compare with.
+// A single version comes back as a string.
+const getPublishedVersions = (name) => [view(name, "versions") ?? []].flat();
 
 // Stable x.y.z versions only; pre-releases are published under `next`.
 const parseStable = (version) =>
@@ -65,12 +74,11 @@ const packages = fs
   .filter((pkg) => !pkg.private);
 
 for (const { name, version } of packages) {
-  const publishedVersions = getPublishedVersions(name);
-  if (publishedVersions.includes(version)) {
+  if (isPublished(name, version)) {
     console.info(`Skipping ${name}@${version}: already published.`);
     continue;
   }
-  const tagArgs = getTagArgs(version, publishedVersions);
+  const tagArgs = getTagArgs(version, getPublishedVersions(name));
   console.info(
     `Publishing ${name}@${version}${tagArgs.length ? ` with ${tagArgs[0]}` : ""}...`,
   );

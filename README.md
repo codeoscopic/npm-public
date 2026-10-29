@@ -10,5 +10,7 @@ We're using [turborepo](https://turborepo.org) to manage all packages.
 
 - [eslint-config](./packages/eslint-config)
 - [tsconfig](./packages/tsconfig)
-- [tsup-config](./packages/tsup-config)
+- [tsdown-config](./packages/tsdown-config)
 - [vite-config](./packages/vite-config)
+
+`tsup-config` was removed in 3.0.0; use `tsdown-config` instead. Patches for 1.x and 2.x, including `tsup-config`, are released from the `release/1.x` and `release/2.x` branches.
