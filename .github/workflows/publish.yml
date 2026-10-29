@@ -42,11 +42,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Pre-releases go to the `next` dist-tag, so `latest` stays on the last
-      # stable version (npm 10 would tag a pre-release `latest`, and npm 11 refuses
-      # to publish one without a tag).
-      - name: Publish packages (next)
-        run: npm run publish -- --tag=next
+      # Pre-releases of 2.x go to the `next-2` dist-tag: `latest` stays on the
+      # last stable version, and `next` on main's pre-releases (npm 10 would tag
+      # a pre-release `latest`, and npm 11 refuses to publish one without a tag).
+      - name: Publish packages (next-2)
+        run: npm run publish -- --tag=next-2
         if: github.event.release.prerelease
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
