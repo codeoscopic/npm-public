@@ -24,10 +24,6 @@
       "type": "json"
     },
     {
-      "filename": "packages/tsup-config/package.json",
-      "type": "json"
-    },
-    {
       "filename": "packages/vite-config/package.json",
       "type": "json"
     }
