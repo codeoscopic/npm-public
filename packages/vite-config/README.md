@@ -28,13 +28,10 @@ import { createOptions } from "@codeoscopic/vite-config/dist/react.js";
 export default defineConfig(createOptions({ ... }));
 ```
 
-If you want to use [antd](https://ant.design/) in your project, change the import for `@codeoscopic/vite-config/dist/react-antd.js` and install the following dependencies:
-
-```sh
-npm install antd
-npm install -D less less-loader antd
-```
+[antd](https://ant.design/) 5 and later need no build configuration: use the `react` preset.
 
 ## Upgrading to 3.0.0
 
 Since 3.0.0 the package is published as ES modules instead of CommonJS. Import paths need the `.js` extension (`@codeoscopic/vite-config/dist/react.js`, not `.../dist/react`), and the package can't be loaded with `require()`.
+
+The `react-antd` preset is removed. It only did antd 4 work (per-component CSS imports with `vite-plugin-imp`, and Less `modifyVars` for its theme), which antd 5 and later don't need. Use `@codeoscopic/vite-config/dist/react.js`, and theme antd with `ConfigProvider` tokens.
