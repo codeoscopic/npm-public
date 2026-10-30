@@ -21,7 +21,7 @@
     "upgrade-libs": "ncu --deep -u -i --format group"
   },
   "devDependencies": {
-    "@commitlint/cli": "^21.2.3",
+    "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.3",
     "@types/node": "^24.19.2",
     "commit-and-tag-version": "^13.3.0",
