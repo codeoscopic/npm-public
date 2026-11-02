@@ -16,3 +16,13 @@ updates:
     # the proposed versions locally.
     cooldown:
       default-days: 7
+    ignore:
+      # tsdown 0.23.2 brings rolldown-plugin-dts 0.29, which can't generate
+      # declarations with TypeScript 7.0. Remove once on TypeScript 7.1.
+      - dependency-name: "tsdown"
+        versions: [">=0.23.2"]
+      - dependency-name: "@tsdown/*"
+        versions: [">=0.23.2"]
+      # The types follow the Node version CI and `engines` use (24).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
