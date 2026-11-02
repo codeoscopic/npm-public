@@ -16,7 +16,7 @@ import { pathToFileURL } from "node:url";
 
 if (typeof module.registerHooks !== "function") {
   throw new Error(
-    "@codeoscopic/eslint-config needs Node.js ^22.15.0 or >=23.5.0 (module.registerHooks)."
+    "@codeoscopic/eslint-config needs Node.js 24 or newer (module.registerHooks)."
   );
 }
 

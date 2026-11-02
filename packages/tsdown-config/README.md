@@ -10,7 +10,7 @@ This package includes our [tsdown](https://tsdown.dev) config for React librarie
 npm install -D tsdown@0.23.1 @tsdown/css@0.23.1 typescript@^7 @codeoscopic/tsdown-config
 ```
 
-It requires Node.js ^22.18.0, ^24.11.0 or >=26.
+It requires Node.js ^24.11.0 or >=26.
 
 tsdown and @tsdown/css must be exactly 0.23.1. tsdown 0.23.2 brings rolldown-plugin-dts 0.29, which can't generate declarations with TypeScript 7.0: its TypeScript 7 support needs 7.1 (due around 24 November 2026). Once that's out, this package will move to the newest tsdown.
 
