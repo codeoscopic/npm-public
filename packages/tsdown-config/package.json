@@ -20,21 +20,21 @@
     "link": "npm link"
   },
   "dependencies": {
-    "postcss": "^8.5.30",
+    "postcss": "^8.5.32",
     "postcss-modules": "^9.0.1",
     "postcss-nested": "^9.0.1"
   },
   "peerDependencies": {
-    "@tsdown/css": "^0.23.1",
-    "tsdown": "^0.23.1"
+    "@tsdown/css": "0.23.1",
+    "tsdown": "0.23.1"
   },
   "devDependencies": {
     "@codeoscopic/eslint-config": "*",
     "@codeoscopic/tsconfig": "*",
-    "@tsdown/css": "^0.23.1",
-    "tsdown": "^0.23.1"
+    "@tsdown/css": "0.23.1",
+    "tsdown": "0.23.1"
   },
   "engines": {
-    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+    "node": "^24.11.0 || >=26.0.0"
   }
 }

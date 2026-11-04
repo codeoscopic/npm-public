@@ -2,17 +2,40 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    # One run a week, so updates arrive together instead of a pull request a day.
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "monday"
     labels:
       - "kind/chore"
+    # Only raise a range when the new version falls outside it; versions the
+    # range already accepts just update package-lock.json.
+    versioning-strategy: increase-if-necessary
     groups:
       # @tsdown/css peers on an exact tsdown version, so they must be bumped together.
       tsdown:
         patterns:
           - "tsdown"
           - "@tsdown/*"
+      # Every other minor and patch update in a single pull request. Majors
+      # still get one pull request each, as they need a review of their own.
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
     # Matches developers' npm `min-release-age` (7 days), so `npm ci` can install
     # the proposed versions locally.
     cooldown:
       default-days: 7
+    ignore:
+      # tsdown 0.23.2 brings rolldown-plugin-dts 0.29, which can't generate
+      # declarations with TypeScript 7.0. Remove once on TypeScript 7.1.
+      - dependency-name: "tsdown"
+        versions: [">=0.23.2"]
+      - dependency-name: "@tsdown/*"
+        versions: [">=0.23.2"]
+      # The types follow the Node version CI and `engines` use (24).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]

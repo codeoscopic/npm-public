@@ -29,7 +29,7 @@ Import aliases from your tsconfig `paths` (e.g. `@/*`) are resolved automaticall
 
 ## TypeScript version
 
-Projects only install TypeScript 7 (`npm install -D typescript@^7`). It needs Node.js ^22.15.0 or >=23.5.0.
+Projects only install TypeScript 7 (`npm install -D typescript@^7`). It needs Node.js 24 or newer.
 
 Type-aware rules run on [typescript-eslint](https://typescript-eslint.io), which needs TypeScript's JS API, and TypeScript 7.0 doesn't have one. So this package brings its own TypeScript 6, which npm installs inside this package because your project's `typescript` is 7. `typescript6.js` then makes every `typescript` import in the ESLint process load that copy. Your `tsc` and editor keep using TypeScript 7.
 
