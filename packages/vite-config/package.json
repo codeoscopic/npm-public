@@ -22,12 +22,12 @@
   "devDependencies": {
     "@codeoscopic/eslint-config": "*",
     "@codeoscopic/tsconfig": "*",
-    "@vitejs/plugin-react": "^6.1.2",
+    "@vitejs/plugin-react": "^6.2.1",
     "typescript": "^7.0.2",
     "vite": "^8.3.5"
   },
   "dependencies": {
-    "@sentry/vite-plugin": "^11.9.0",
+    "@sentry/vite-plugin": "^11.10.0",
     "ts-deepmerge": "^8.0.0",
     "vite-plugin-svgr": "^5.2.0"
   },
